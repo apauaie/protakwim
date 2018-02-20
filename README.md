@@ -1,5 +1,5 @@
 # ProTakwim
-ProTakwim is a php based system for Raspberry Pi with Malaysia prayer time obtained from Azanpro.
+ProTakwim is a php based system for Raspberry Pi with Malaysia prayer time obtained from azanpro.
 
 This system is adapted from #pi-prayertime 
 
