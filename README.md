@@ -1,11 +1,13 @@
-# pi-prayertime
-Raspberry pi with Malaysia prayer time
+# ProTakwim
+ProTakwim is a php based system for Raspberry Pi with Malaysia prayer time obtained from Azanpro.
 
-In this project, I made a simple web for displaying prayer time for **Malaysia** region.
-This web has three main function:
+This system is adapted from #pi-prayertime 
 
-1. Display time and date
-2. Display prayer time for selected region
-3. Display message or hadith 
+The system generally display the current solat time for chosen region and display the time for iqomah and azan. The system will display a static page(user editable) during prayer. 
 
-Hare the link to the video https://youtu.be/uib-rFpJ1BE
+Current features:
+
+1) Can be used offline (Please set the time to use external RTC if you don't have internet)
+2) Display full screen image slider
+3) Control with Mobile apps using ProTakwim apps in PlayStore(Android only)
+
