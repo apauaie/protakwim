@@ -11,7 +11,7 @@
  $DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
  $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	$query2 ="SELECT  * FROM setting_list"; 
+	$query2 ="SELECT  * FROM setting_list";
 			                    $stmt2 = $DBH->prepare($query2);
 			                    $query2 = $stmt2->execute();
 			                    $result2 = $stmt2->fetchAll();
@@ -23,8 +23,6 @@
 			                         $scrollspeed=$result2[0]['scrollspeed'];
 									 $masjidname=$result2[0]['namamasjid'];
 									 $refresh=$result2[0]['refresh'];
-									 $solatperiod=$result2[0]['solatperiod'];
-
 
 /*
     $url = file_get_contents('http://api.azanpro.com/times/today.json?zone='.$zon.'&format=12-hour');
@@ -65,7 +63,17 @@ $query = "SELECT kawasan from solat_zone WHERE code='$zon'";
 			                    $solatdata = $stmt2->fetchAll();
 			                    $datestamp=$solatdata[0]['datestamp'];
 									$imsak= $solatdata[0]['imsak'];
+/*
 
+$subuh= $solatdata[0]['subuh'];
+									  $zohor= $solatdata[0]['zohor'];
+									  $syuruk= $solatdata[0]['syuruk'];
+									  $asar= $solatdata[0]['asar'];
+									  $maghrib= $solatdata[0]['maghrib'];
+									  $isyak= $solatdata[0]['isyak'];
+									  
+*/
+									  
 									  $subuh= $solatdata[0]['subuh'];
 									  $zohor= $solatdata[0]['zohor'];
 									  $syuruk= $solatdata[0]['syuruk'];
@@ -73,9 +81,9 @@ $query = "SELECT kawasan from solat_zone WHERE code='$zon'";
 									  $maghrib= $solatdata[0]['maghrib'];
 									  $isyak= $solatdata[0]['isyak'];
 									  $timetoazan= $timebeforeazan/1000;
- 									  $lockazan= 1000000/1000; 
-   
-//       $zohor="5:56";
+    
+//           $isyak="6:33:30 pm";
+    
     
     $dimsak=  date('g:i:s a',strtotime($imsak));
     $dsubuh=  date('g:i:s a',strtotime($subuh));
@@ -91,26 +99,6 @@ $query = "SELECT kawasan from solat_zone WHERE code='$zon'";
     $bmaghrib=  date('g:i:s a',strtotime($maghrib)-$timetoazan);
     $bisyak=  date('g:i:s a',strtotime($isyak)-$timetoazan);
     
-
-	$lockimsak=  date('g:i:s a',strtotime($imsak)-$lockazan);
-    $locksubuh=  date('g:i:s a',strtotime($subuh)-$lockazan);
-    $lockzohor=  date('g:i:s a',strtotime($zohor)-$lockazan);
-    $lockasar=  date('g:i:s a',strtotime($asar)-$lockazan);
-    $lockmaghrib=  date('g:i:s a',strtotime($maghrib)-$lockazan);
-    $lockisyak=  date('g:i:s a',strtotime($isyak)-$lockazan);
-    
-    $subuh=str_replace ("am"," ",$subuh);
-	$syuruk=str_replace ("am"," ",$syuruk);
-    $zuhur=str_replace ("am"," ",$zohor);
-    $asar=str_replace ("am"," ",$asar);
-    $maghrib=str_replace ("am"," ",$maghrib);
-    $isyak=str_replace ("am"," ",$isyak);
-    $syuruk=str_replace ("pm"," ",$syuruk);
-    $zohor=str_replace ("pm"," ",$zohor);
-    $asar=str_replace ("pm"," ",$asar);
-    $maghrib=str_replace ("pm"," ",$maghrib);
-    $isyak=str_replace ("pm"," ",$isyak);
-
 
 
     $waktuAzan = array("subuh"=>"$subuh", "syuruk"=>"$syuruk", "zohor"=>"$zohor", "asar"=>"$asar", "maghrib"=>"$maghrib", "isyak"=>"$isyak");
