@@ -19,36 +19,36 @@ $displayTime =  date("g:i");
 	     	echo '<script>refresh()</script>';
             break;
         case "$dsubuh":
-            echo '<script>showiqomah()</script>';
+            echo '<script>showiqomah("subuh")</script>';
             break;
         case "$dzohor":
-            echo '<script>showiqomah()</script>';
+            echo '<script>showiqomah("zuhur")</script>';
             break;
         case "$dasar":
-            echo '<script>showiqomah()</script>';
+            echo '<script>showiqomah("asar")</script>';
             break;
         case "$dmaghrib":
-            echo '<script>showiqomah()</script>';
+            echo '<script>showiqomah("maghrib")</script>';
             break;
         case "$disyak":
-            echo '<script>showiqomah()</script>';
+            echo '<script>showiqomah("isyak")</script>';
             break;
             
             
        case "$bsubuh":
-            echo '<script>timerazan()</script>';
+            echo '<script>timerazan("subuh")</script>';
             break;
         case "$bzohor":
-            echo '<script>timerazan()</script>';
+            echo '<script>timerazan("zuhur")</script>';
             break;
         case "$basar":
-            echo '<script>timerazan()</script>';
+            echo '<script>timerazan("asar")</script>';
             break;
         case "$bmaghrib":
-            echo '<script>timerazan()</script>';
+            echo '<script>timerazan("maghrib")</script>';
             break;
         case "$bisyak":
-            echo '<script>timerazan()</script>';
+            echo '<script>timerazan("isyak")</script>';
             break;
     }
 ?>

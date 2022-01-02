@@ -1,3 +1,3 @@
 <?
-header("Location: production/senarai_ceramah.php");
+header("Location: senarai_ceramah.php");
 ?>

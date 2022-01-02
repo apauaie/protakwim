@@ -17,6 +17,8 @@ define("DB_HOST", "127.0.0.1");
 define("DB_NAME", "takwim_masjid");
 define("DB_USER", "masjid");
 define("DB_PASS", "protakwim");
+$DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+$DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 /**
  * Configuration for: Cookies
@@ -79,8 +81,8 @@ $mail->AddAddress("email@gmail.com");
 define("EMAIL_USE_SMTP", true);
 define("EMAIL_SMTP_HOST", "ssl://smtp.gmail.com");
 define("EMAIL_SMTP_AUTH", true);
-define("EMAIL_SMTP_USERNAME", "globaleducation@utm.my");
-define("EMAIL_SMTP_PASSWORD", "ge654321");
+define("EMAIL_SMTP_USERNAME", "admin@masjidpulaiindah.com");
+define("EMAIL_SMTP_PASSWORD", "12345678");
 define("EMAIL_SMTP_PORT", 465);
 define("EMAIL_SMTP_ENCRYPTION", "ssl");
 
@@ -88,20 +90,20 @@ define("EMAIL_SMTP_ENCRYPTION", "ssl");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://www.teamxplore.com/mobility/administrator/password_reset.php");
-define("EMAIL_PASSWORDRESET_FROM", "globaleducation@utm.my");
-define("EMAIL_PASSWORDRESET_FROM_NAME", "UTM Mobility");
-define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for UTM Mobility");
+define("EMAIL_PASSWORDRESET_URL", "http://www.teamxplore.com/administrator/");
+define("EMAIL_PASSWORDRESET_FROM", "admin@masjidpulaiindah.com");
+define("EMAIL_PASSWORDRESET_FROM_NAME", "PT");
+define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for Protakwim");
 define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your password:");
 
 /**
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://www.teamxplore.com/mobility/administrator/register.php");
-define("EMAIL_VERIFICATION_FROM", "globaleducation@utm.my");
-define("EMAIL_VERIFICATION_FROM_NAME", "UTM Mobility");
-define("EMAIL_VERIFICATION_SUBJECT", "Account activation for UTM Mobility");
+define("EMAIL_VERIFICATION_URL", "http://www.teamxplore.com/mobility/administrator/");
+define("EMAIL_VERIFICATION_FROM", "admin@masjidpulaiindah.com");
+define("EMAIL_VERIFICATION_FROM_NAME", "Protakwim");
+define("EMAIL_VERIFICATION_SUBJECT", "Account activation for Protakwim");
 define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account:");
 
 /**

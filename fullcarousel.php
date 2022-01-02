@@ -2,19 +2,10 @@
 	session_start();
 	
 
-/*
 
-	if(empty($_SESSION['admin_username'])){
-		header('Location: ../index.php');
-		exit;
-	} 
-*/
 	require_once("config/config.php");
 
 
-
- $DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
- $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
 
@@ -42,14 +33,21 @@
 			                    $code= $solatzone[0]['code'];
 			                    $kawasan= $solatzone[0]['kawasan'];
 	
-	$query2 ="SELECT  * FROM ceramah_list where status='active'";
+	$query2 ="SELECT  * FROM ceramah_list where status='active' order by id DESC";
 	
 			                    $stmt2 = $DBH->prepare($query2);
 			                    $query2 = $stmt2->execute();
 			                    $ceramah = $stmt2->fetchAll();
-			                    
+	$query2 ="SELECT  count(*) as totalc FROM ceramah_list where status='active'";
+	
+			                    $stmt2 = $DBH->prepare($query2);
+			                    $query2 = $stmt2->execute();
+			                    $tot = $stmt2->fetchAll();
+			                   
+			                    $totalc= $tot[0]['totalc'];
+			                    		                    
 	$tday=date('Y-m-d');		                    
-
+	//echo $totalc;
 
 ?>
 
@@ -233,13 +231,6 @@ html,body{height:100%;}
 											);
 											$date_string= $IntlDateFormatter->format($DateTime);
 											
-/*
-											    setlocale(LC_TIME, "");
-
-		                                    setlocale(LC_TIME, 'ms_MY');
-		                                    $date_string = utf8_encode(strftime('%A, %d %B %Y', strtotime($row['tarikh'])));
-		                                    
-*/
 
 		                                        if ($row['displaytext']=="on") {?>
                                             
@@ -291,11 +282,11 @@ html,body{height:100%;}
 });
 
 
-
+	var timout= <?echo $totalc;?> * 9000+10000;
 
 	    setTimeout(function () {
        window.location.href = "index.php"; //will redirect to your blog page (an ex: blog.html)
-    }, 120000); //will call the function after 2 minutes.
+    },timout ); //will call the function after 2 minutes.
 
 
 

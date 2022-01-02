@@ -2,12 +2,6 @@
     date_default_timezone_set('Asia/Kuala_Lumpur');
 	require_once("config/config.php");
 
-    //$zon = "kdh03";
-/*
-    $myfile = fopen("./text/zon.txt", "r") or die("Unable to open file!");
-    $zon = fread($myfile,filesize("./text/zon.txt"));
-*/
-    
  $DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
  $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -26,30 +20,7 @@
 									 $solatperiod=$result2[0]['solatperiod'];
 
 
-/*
-    $url = file_get_contents('http://api.azanpro.com/times/today.json?zone='.$zon.'&format=12-hour');
 
-    $json = json_decode($url, true);
-
-
-    $time = $json[prayer_times];
-    $location = $json[locations];
-
-    #echo "Waktu Subuh:".($time['subuh']);
-
-    $kawasan = '';
-
-    foreach($location as $x){
-        $kawasan = $kawasan.$x.", ";
-    }
-	//add second to ensure only ran once
-    $imsak = $time[imsak];
-    $subuh = $time[subuh];
-    $zohor = $time[zohor];
-    $asar = $time[asar];
-    $maghrib = $time[maghrib];
-    $isyak = $time[isyak];
-*/
 
 $query = "SELECT kawasan from solat_zone WHERE code='$zon'";
 			$statement = $DBH->prepare($query);
@@ -74,8 +45,7 @@ $query = "SELECT kawasan from solat_zone WHERE code='$zon'";
 									  $isyak= $solatdata[0]['isyak'];
 									  $timetoazan= $timebeforeazan/1000;
  									  $lockazan= 1000000/1000; 
-   
-//       $zohor="5:56";
+   //$subuh="1:57 pm";
     
     $dimsak=  date('g:i:s a',strtotime($imsak));
     $dsubuh=  date('g:i:s a',strtotime($subuh));
