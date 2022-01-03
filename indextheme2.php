@@ -15,11 +15,6 @@
 
 
 
- $DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
- $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-
 
 
 	$query2 ="SELECT  * FROM setting_list";
@@ -101,21 +96,7 @@ $tarikhhariini= $IntlDateFormatter->format($DateTime);
         $zonKawasan = htmlspecialchars($_POST['zon']);
         $pesanan = htmlspecialchars($_POST['pesanan']);
 
-        // tulis zon kawasan ke zon.txt
-/*
-        if(!empty($zonKawasan)){
-            $myzonFile = fopen("./text/zon.txt", "w") or die("Unable to open file!");
-            fwrite($myzonFile, $zonKawasan);
-            fclose($myzonFile);
-        }
 
-        // Tulis pesanan ke pesanan.txt
-        if(!empty($pesanan)){
-            $mypesananFile = fopen("./text/pesanan.txt", "w") or die("Unable to write file!");
-            fwrite($mypesananFile, $pesanan);
-            fclose($mypesananFile);
-        }
-*/
     }
     
     
@@ -310,7 +291,7 @@ svg{
 </style>
 </head>
 
-<?$urlback="background-image: url('administrator/uploads/bg1.jpg');"; ?>
+<?$urlback="background-image: url('administrator/uploads/".$lokasigambarlatar."');"; ?>
 <body style=   "<?echo $urlback;?>">
     <div class="container-fluid">
         <!-- SECTION1 -->
