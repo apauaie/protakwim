@@ -1,21 +1,5 @@
 <?php
 
-define("DB_HOST", "127.0.0.1");
-$DBH = new PDO('mysql:host='. DB_HOST.';dbname='. takwim_masjid . ';charset=utf8', masjid, protakwim);
-$DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// require_once('../config/config.php');
-// global $DBH;
-$query2 ="SELECT  * FROM user_list where status='active'";
-  
-                          $stmt2 = $DBH->prepare($query2);
-                          $query2 = $stmt2->execute();
-                          $admin_list = $stmt2->fetchAll();
-                          
-
-  date_default_timezone_set('Asia/Kuala_Lumpur');
-  
-
-
 ###############################################################
 # Page Password Protect 2.13
 ###############################################################
@@ -34,29 +18,26 @@ $query2 ="SELECT  * FROM user_list where status='active'";
 #
 ###############################################################
 
-/*
--------------------------------------------------------------------
-SAMPLE if you only want to request login and password on login form.
-Each row represents different user.
 
-$LOGIN_INFORMATION = array(
-  'zubrag' => 'root',
-  'test' => 'testpass',
-  'admin' => 'passwd'
-);
+  include(dirname(__DIR__)."/config/config.php");
 
---------------------------------------------------------------------
-SAMPLE if you only want to request only password on login form.
-Note: only passwords are listed
 
-$LOGIN_INFORMATION = array(
-  'root',
-  'testpass',
-  'passwd'
-);
 
---------------------------------------------------------------------
-*/
+ $DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+ $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ 
+ $query2 ="SELECT  * FROM user_list";
+ $stmt2 = $DBH->prepare($query2);
+ $query2 = $stmt2->execute();
+ $result2 = $stmt2->fetchAll();
+ 
+    foreach($result2 as $row){
+      
+      $array[$row['username']]=$row['password'];
+    }
+    
+    
+
 
 ##################################################################
 #  SETTINGS START
@@ -64,25 +45,7 @@ $LOGIN_INFORMATION = array(
 
 // Add login/password pairs below, like described above
 // NOTE: all rows except last must have comma "," at the end of line
-
-
-// $LOGIN_INFORMATION = array(
-// 
-//   foreach($admin_list as $row)
-//   {
-//      "'".$row['username']."' => '".$row['password']."',";
-//   
-//   }
-//   'hairozi' => 'mpi12345',
-//   'admin2' => 'protakwim',
-//   'mtpi'=>'mtpi'
-// );
-
-foreach($admin_list as $row)
-    {
-    $LOGIN_INFORMATION = array('admin'=> $row['password']);
-}
-
+$LOGIN_INFORMATION = $array;
 
 // request login? true - show login and password boxes, false - password box only
 define('USE_USERNAME', true);
@@ -129,20 +92,20 @@ function showLoginPasswordProtect($error_msg) {
 <html>
 	
 	     <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
 <!--     <link href="../build/css/custom.min.css" rel="stylesheet"> -->
 
 
 <head>
-  <title>Protakwim Password Protect</title>
+  <title>PasswordProtect</title>
   <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
   <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
 </head>
@@ -152,7 +115,7 @@ function showLoginPasswordProtect($error_msg) {
   </style>
   <div style="width:500px; margin-left:auto; margin-right:auto; text-align:center">
   <form method="post">
-     <br><img src="../img/logo.png" alt="logomasjid" width="200" height="" />
+     <br><img src="../../img/logo.png" alt="logomasjid" width="200" height="" />
 
     <font color="red"><?php echo $error_msg; ?></font><br />
 <?php if (USE_USERNAME) echo '<br /><input class="form-control" type="input" placeholder = "username" name="access_login" /><br />'; ?>
@@ -175,8 +138,7 @@ function showLoginPasswordProtect($error_msg) {
 if (isset($_POST['access_password'])) {
 
   $login = isset($_POST['access_login']) ? $_POST['access_login'] : '';
-  $pass = md5($_POST['access_password']);
-  // echo $pass;
+  $pass = $_POST['access_password'];
   if (!USE_USERNAME && !in_array($pass, $LOGIN_INFORMATION)
   || (USE_USERNAME && ( !array_key_exists($login, $LOGIN_INFORMATION) || $LOGIN_INFORMATION[$login] != $pass ) ) 
   ) {

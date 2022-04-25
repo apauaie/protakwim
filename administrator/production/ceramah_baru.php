@@ -1,10 +1,15 @@
-<?
-	
+<?php 
+
+	ini_set('upload_max_filesize', '50M');
+   ini_set('post_max_size', '50M');
+   ini_set('max_input_time', 300);
+   ini_set('max_execution_time', 300);
+   
+   
 	include ('../password_protect.php');
 	
 
 	require_once('../../config/config.php');
-
 
  $DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
  $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -61,7 +66,7 @@ if(isset($_FILES['files'])){
       $file_type=$_FILES['files']['type'];
       $file_ext=strtolower(end(explode('.',$_FILES['files']['name'])));
       
-      $expensions= array("jpeg","jpg","png","pdf");
+      $expensions= array("jpeg","jpg","png","pdf","gif");
       
       if(in_array($file_ext,$expensions)=== false){
          $errors[]="extension not allowed, please choose a JPEG,PDF or PNG file.";
@@ -157,7 +162,7 @@ window.location.href = 'senarai_ceramah.php';
   <script type="text/javascript" src="../../plugin/autocomplete/js/bootstrap.min.js"></script>
   </head>
 
-   <?include('menu.php');?>
+   <?php include('menu.php');?>
    
    
 

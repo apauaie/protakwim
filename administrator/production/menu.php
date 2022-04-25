@@ -4,7 +4,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="senarai_ceramah.php" class="site_title"><i class="fa fa-first-order"></i> <span>ProTakwim</span></a>
+              <a href="senarai_ceramah.php" class="site_title"><i class="fa fa-globe"></i> <span>ProTakwim</span></a>
             </div>
 		<div align="center"></div>
             <div class="clearfix"></div>
@@ -17,13 +17,18 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href=senarai_ceramah.php><i class="fa fa-user"></i> Aktiviti </a></li>
+                  <li><a href=senarai_ceramah.php><i class="fa fa-user"></i> Senarai Poster </a></li>
+                  <li><a href=senarai_ceramah_video.php><i class="fa fa-bell"></i> Senarai Video</a></li>
+
                   <li><a href=tetapanzone.php><i class="fa fa-globe"></i> Zon Solat </a></li>
-
+                  <li><a href=tetapan_tarikh_penting.php><i class="fa fa-bomb"></i> Tarikh Penting </a></li>
                   <li><a href=tetapan.php><i class="fa fa-edit"></i> Tetapan </a></li>
-                                    <li><a href=gambarlatar.php><i class="fa fa-photo"></i> Tetapan Gambar </a></li>
+                  <li><a href=gambarlatar.php><i class="fa fa-photo"></i> Tetapan Gambar </a></li>
+                  <li><a href=tetapan_tema.php><i class="fa fa-globe"></i> Tema </a></li>
+                  <li><a href=tukar_password.php><i class="fa fa-camera"></i> Tukar Password </a></li>
 
-                  <li><a href=kemaskini.php><i class="fa fa-refresh"></i> Kemaskini </a></li>
+                  <li><a href=kemaskini.php><i class="fa fa-twitter"></i> Kemaskini </a></li>
+                  <li><a href=../password_protect.php?logout><i class="fa fa-refresh"></i> Logout </a></li>
 
                 </ul>
               </div>

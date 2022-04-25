@@ -1,3 +1,5 @@
-<?
-header("Location: senarai_ceramah.php");
+<?php
+
+
+header("Location: production/senarai_ceramah.php");
 ?>

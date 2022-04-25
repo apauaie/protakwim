@@ -1,9 +1,13 @@
-<?
-	
-	include ('../password_protect.php');
-	
+<?php 
+  ini_set('upload_max_filesize', '50M');
+   ini_set('post_max_size', '50M');
+   ini_set('max_input_time', 300);
+   ini_set('max_execution_time', 300);
+   
+  include ('../password_protect.php');
+  
 
-	require_once('../../config/config.php');
+  require_once('../../config/config.php');
 
 
  $DBH = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
@@ -11,26 +15,56 @@
 
 
     //require_once 'time.php';
-	date_default_timezone_set('Asia/Kuala_Lumpur');
+  date_default_timezone_set('Asia/Kuala_Lumpur');
 
 $query2 ="SELECT  * FROM setting_list ";
-	
-			                    $stmt2 = $DBH->prepare($query2);
-			                    $query2 = $stmt2->execute();
-			                    $setting = $stmt2->fetchAll();
-			                    $zone= $setting[0][zone];
-			                    $pesanan= $setting[0][pesanan];
-			                    $namamasjid= $setting[0][namamasjid];
-			                    $iqomahperiod= $setting[0][iqomahperiod];
-			                    $timebeforeazan= $setting[0][timebeforeazan];
-			                    $scrollspeed= $setting[0][scrollspeed];
-			                    $lokasigambarlatar= $setting[0][lokasigambarlatar];
-			                    $lokasigambarsolat= $setting[0][lokasigambarsolat];
-			                    
+  
+                          $stmt2 = $DBH->prepare($query2);
+                          $query2 = $stmt2->execute();
+                          $setting = $stmt2->fetchAll();
+                          $zone= $setting[0][zone];
+                          $pesanan= $setting[0][pesanan];
+                          $namamasjid= $setting[0][namamasjid];
+                          $iqomahperiod= $setting[0][iqomahperiod];
+                          $timebeforeazan= $setting[0][timebeforeazan];
+                          $scrollspeed= $setting[0][scrollspeed];
+                          $lokasigambarlatar= $setting[0][lokasigambarlatar];
+                          $lokasigambarsolat= $setting[0][lokasigambarsolat];
+                          $lokasigambarsolatjumaat= $setting[0][lokasigambarsolatjumaat];
+
+                          
 
 
-	if (isset($_POST['submit'])){
-		
+  if (isset($_POST['lalailatar'])){
+    $file_name="gambarlatar-default.jpg";
+    $ref="yes";
+    $query = "UPDATE setting_list SET refresh='$ref',lokasigambarlatar='$file_name' WHERE 1";
+    $statement = $DBH->prepare($query);
+    $statement->execute();
+    header("Refresh:0");
+
+  }
+  if (isset($_POST['lalaisolat'])){
+    $file_name="solatnow-default.png";
+    $ref="yes";
+    $query = "UPDATE setting_list SET refresh='$ref',lokasigambarsolat='$file_name' WHERE 1";
+    $statement = $DBH->prepare($query);
+    $statement->execute();
+    header("Refresh:0");
+
+  }
+  if (isset($_POST['lalaijumaat'])){
+    $file_name="solatjumaat-default.png";
+    $ref="yes";
+    $query = "UPDATE setting_list SET refresh='$ref',lokasigambarsolatjumaat='$file_name' WHERE 1";
+    $statement = $DBH->prepare($query);
+    $statement->execute();
+    header("Refresh:0");
+
+  }
+  
+  if (isset($_POST['submit'])){
+    
 
 if(isset($_FILES['files'])){
       $errors= array();
@@ -40,10 +74,10 @@ if(isset($_FILES['files'])){
       $file_type=$_FILES['files']['type'];
       $file_ext=strtolower(end(explode('.',$_FILES['files']['name'])));
       
-      $expensions= array("jpeg","jpg","png","pdf");
+      $expensions= array("jpeg","jpg","png","gif");
       
       if(in_array($file_ext,$expensions)=== false){
-         $errors[]="extension not allowed, please choose a JPEG,PDF or PNG file.";
+         $errors[]="extension not allowed, please choose a JPEG,GIF or PNG file.";
       }
       
 
@@ -59,10 +93,10 @@ if(isset($_FILES['files'])){
 
 
 
-			$ref="yes";
-			$query = "UPDATE setting_list SET refresh='$ref',lokasigambarlatar='$file_name' WHERE 1";
-			$statement = $DBH->prepare($query);
-			$statement->execute();
+      $ref="yes";
+      $query = "UPDATE setting_list SET refresh='$ref',lokasigambarlatar='$file_name' WHERE 1";
+      $statement = $DBH->prepare($query);
+      $statement->execute();
          
       }else{
          echo "Error Upload";
@@ -80,10 +114,10 @@ if(isset($_FILES['files'])){
       $file_type=$_FILES['filesSolat']['type'];
       $file_ext=strtolower(end(explode('.',$_FILES['filesSolat']['name'])));
       
-      $expensions= array("jpeg","jpg","png","pdf");
+      $expensions= array("jpeg","jpg","png","gif");
       
       if(in_array($file_ext,$expensions)=== false){
-         $errors[]="extension not allowed, please choose a JPEG,PDF or PNG file.";
+         $errors[]="extension not allowed, please choose a JPEG,GIF or PNG file.";
       }
       
 
@@ -99,10 +133,47 @@ if(isset($_FILES['files'])){
 
 
 
-			$ref="yes";
-			$query = "UPDATE setting_list SET refresh='$ref',lokasigambarsolat='$file_name' WHERE 1";
-			$statement = $DBH->prepare($query);
-			$statement->execute();
+      $ref="yes";
+      $query = "UPDATE setting_list SET refresh='$ref',lokasigambarsolat='$file_name' WHERE 1";
+      $statement = $DBH->prepare($query);
+      $statement->execute();
+         
+      }else{
+         echo "Error Upload";
+      }
+   }
+   
+   if(isset($_FILES['filesSolatJumaat'])){
+      $errors= array();
+      $file_name = $_FILES['filesSolatJumaat']['name'];
+      $file_size =$_FILES['filesSolatJumaat']['size'];
+      $file_tmp =$_FILES['filesSolatJumaat']['tmp_name'];
+      $file_type=$_FILES['filesSolatJumaat']['type'];
+      $file_ext=strtolower(end(explode('.',$_FILES['filesSolatJumaat']['name'])));
+      
+      $expensions= array("jpeg","jpg","png","gif");
+      
+      if(in_array($file_ext,$expensions)=== false){
+         $errors[]="extension not allowed, please choose a JPEG,GIF or PNG file.";
+      }
+      
+
+      
+      if(empty($errors)==true){
+         move_uploaded_file($file_tmp,"uploads/".$file_name);
+             // *** Include the class
+    
+
+
+
+
+
+
+
+      $ref="yes";
+      $query = "UPDATE setting_list SET refresh='$ref',lokasigambarsolatjumaat='$file_name' WHERE 1";
+      $statement = $DBH->prepare($query);
+      $statement->execute();
          
       }else{
          echo "Error Upload";
@@ -112,15 +183,15 @@ if(isset($_FILES['files'])){
 //end file upload
 header("Refresh:0");
 
-	}
+  }
 
 
 
 
 
 
-	
-	
+  
+  
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +202,7 @@ header("Refresh:0");
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	  
+    
     <title>Latar Belakang | </title>
 
       <!-- Bootstrap -->
@@ -158,14 +229,9 @@ header("Refresh:0");
     
   <link href="plugins/fileuploader/src/jquery.fileuploader.min.css" media="all" rel="stylesheet">
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<!--   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
-  <script type="text/javascript" src="../../plugin/autocomplete/js/bootstrap.min.js"></script>
   </head>
 
-   <?include('menu.php');?>
+   <?php include('menu.php');?>
    
    
 
@@ -180,7 +246,7 @@ header("Refresh:0");
                  </div>
             <div class="clearfix"></div>
             <div class="row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-4 col-xs-12">
   <div class="x_panel">
                   <div class="x_title">
                     <h2>Gambar Latar</h2>
@@ -192,18 +258,19 @@ header("Refresh:0");
                   <div class="x_content">
 
                     <!-- start form for validation -->
-		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-			
-                      <?$urlback="uploads/".$lokasigambarlatar;?>
-                   <img src="<?echo $urlback;?>" alt="Gambar Latar" width="100%" height="" />
+    <form onsubmit="return confirm('Anda Pasti? Gambar sekarang akan digantikan dgn gambar lalai.');" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+      <button type="submit" name="lalailatar" class="btn btn-info btn-lg btn-block">Tukar Gambar Lalai</button>
+      
+                      <?php $urlback="uploads/".$lokasigambarlatar;?>
+                   <img src="<?php echo $urlback;?>" alt="Gambar Latar" width="100%" height="200px" />
 
                           <div id="fine-uploader-gallery"><label>Pilih Gambar Latar:</label>
-			<input style="width:100%" type="file" name="files" ></div>
-		
+      <input style="width:100%" type="file" name="files" ></div>
+    
 
 
                           <br/>
-						  <button type="submit" name=submit class="btn btn-success btn-lg">Tukar Gambar Latar</button>
+              <button type="submit" name=submit class="btn btn-success btn-lg btn-block">Muatnaik Gambar Latar</button>
                     </form>
                     <!-- end form for validations -->
 
@@ -214,7 +281,7 @@ header("Refresh:0");
               </div>
               
               
-               <div class="col-md-6 col-xs-12">
+               <div class="col-md-4 col-xs-12">
   <div class="x_panel">
                   <div class="x_title">
                     <h2>Gambar Semasa Solat</h2>
@@ -226,17 +293,51 @@ header("Refresh:0");
                   <div class="x_content">
 
                     <!-- start form for validation -->
-		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-			
-                			 <?$urlback="uploads/".$lokasigambarsolat;?>
-                   <img src="<?echo $urlback;?>" alt="Gambar Solat" width="100%" height="" />
+    <form onsubmit="return confirm('Anda Pasti? Gambar sekarang akan digantikan dgn gambar lalai.');" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+      <button type="submit" name="lalaisolat" class="btn btn-info btn-lg btn-block">Tukar Gambar Lalai</button>
+                       <?php $urlback="uploads/".$lokasigambarsolat;?>
+                   <img src="<?php echo $urlback;?>" alt="Gambar Solat" width="100%" height="200px" />
 
                           <div id="fine-uploader-gallery"><label>Pilih Gambar Solat:</label>
-			<input style="width:100%" type="file" name="filesSolat" ></div>
+      <input style="width:100%" type="file" name="filesSolat" ></div>
 
 
                           <br/>
-						  <button type="submit" name=submit class="btn btn-success btn-lg">Tukar Gambar Solat</button>
+              <button type="submit" name=submit class="btn btn-success btn-block btn-lg">Muatnaik Gambar Solat</button>
+                    </form>
+                    <!-- end form for validations -->
+
+                  </div>
+                </div>
+
+
+              </div>
+              
+              <div class="col-md-4 col-xs-12">
+  <div class="x_panel">
+                  <div class="x_title">
+                    
+                    <h2>Gambar Solat Jumaat</h2>
+                  
+                         
+                    </ul>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <!-- start form for validation -->
+  <form onsubmit="return confirm('Anda Pasti? Gambar sekarang akan digantikan dgn gambar lalai.');" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+  <button type="submit" name="lalaijumaat" class="btn btn-info btn-lg btn-block">Tukar Gambar Lalai</button>
+                       <?php $urlback="uploads/".$lokasigambarsolatjumaat;?>
+                   <img src="<?php echo $urlback;?>" alt="Gambar Solat" width="100%" height="200px" />
+
+                          <div id="fine-uploader-gallery"><label>Pilih Gambar Jumaat:</label>
+      <input style="width:100% ;" type="file" name="filesSolatJumaat" ></div>
+
+
+                          <br/>
+              <button type="submit" name=submit class="btn btn-success btn-block btn-lg">Muatnaik Gambar Jumaat</button>
                     </form>
                     <!-- end form for validations -->
 
@@ -254,7 +355,7 @@ header("Refresh:0");
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            2017 ProTakwim <a href="www.takwim-solat.org">Takwim Solat</a>
+            2017 ProTakwim <a href="www.protakwim.org">Takwim Solat</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -265,6 +366,8 @@ header("Refresh:0");
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
+      <script type="text/javascript" src="../../plugin/autocomplete/js/bootstrap.min.js"></script>
+
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
@@ -296,11 +399,12 @@ header("Refresh:0");
     <!-- starrr -->
     <script src="../vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <!-- <script src="../build/js/custom.js"></script> -->
     
     
 
     <!-- bootstrap-daterangepicker -->
+      
     <script src="../vendors/moment/min/moment.min.js"></script>
     <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap-datetimepicker -->    
@@ -314,12 +418,12 @@ header("Refresh:0");
     <!-- jQuery Knob -->
     <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
     <!-- Cropper -->
-    <script src="../vendors/cropper/dist/cropper.min.js"></script>
+    <!-- <script src="../vendors/cropper/dist/cropper.min.js"></script> -->
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/custom.js"></script>
     
-	<script>
+  <script>
 
     $('#myDatepicker').datetimepicker({
         format: 'DD-MM-YYYY'
