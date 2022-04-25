@@ -6,9 +6,8 @@ This project is an extension of Raspberry Pi Prayer time from https://github.com
 
 Demo Site can be accessed from here https://masjidpulaiindah.com/protakwim/
 
-<img width="1388" alt="Screenshot 2022-04-26 at 6 30 03 AM" src="https://user-images.githubusercontent.com/9554175/165185546-221cc8e4-1b32-4855-8009-7da0e82ee078.png"><img width="861" alt="Screenshot 2022-04-26 at 6 29 52 AM" src="https://user-images.githubusercontent.com/9554175/165185548-3475596b-a043-43ab-8c14-4232e682f3b3.png">
-<img width="1410" alt="Screenshot 2022-04-26 at 6 29 43 AM" src="https://user-images.githubusercontent.com/9554175/165185553-6ff8d0d1-b5e2-41df-a4b6-642aacd25a10.png">
-<img width="982" alt="Screenshot 2022-04-26 at 6 29 33 AM" src="https://user-images.githubusercontent.com/9554175/165185555-de24d87f-b432-4b67-9e42-21c069ae1b00.png">
+<img width="644" alt="Screenshot 2022-04-26 at 5 54 13 AM" src="https://user-images.githubusercontent.com/9554175/165185937-feb73902-31d5-4550-b460-ed9998b9571d.png">
+
 
 
 
