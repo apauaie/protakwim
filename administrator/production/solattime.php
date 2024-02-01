@@ -25,15 +25,16 @@ $query2 ="SELECT  * FROM setting_list ";
 			                    $stmt2 = $DBH->prepare($query2);
 			                    $query2 = $stmt2->execute();
 			                    $setting = $stmt2->fetchAll();
-			                    $zone= $setting[0][zone];
-			                    $pesanan= $setting[0][pesanan];
-			                    $namamasjid= $setting[0][namamasjid];
-			                    $iqomahperiod= $setting[0][iqomahperiod];
-			                    $timebeforeazan= $setting[0][timebeforeazan];
-			                    $scrollspeed= $setting[0][scrollspeed];
-			                    $lokasigambarlatar= $setting[0][lokasigambarlatar];
-			                    $lokasigambarsolat= $setting[0][lokasigambarsolat];
-			                    $solatperiod= $setting[0][solatperiod];
+			                    $zone= $setting[0]['zone'];
+                          $pesanan= $setting[0]['pesanan'];
+                          $namamasjid= $setting[0]['namamasjid'];
+                          $iqomahperiod= $setting[0]['iqomahperiod'];
+                          $timebeforeazan= $setting[0]['timebeforeazan'];
+                          $scrollspeed= $setting[0]['scrollspeed'];
+                          $lokasigambarlatar= $setting[0]['lokasigambarlatar'];
+                          $lokasigambarsolat= $setting[0]['lokasigambarsolat'];
+                          
+                          $solatperiod= $setting[0]['solatperiod'];
 
 			                    
 

@@ -34,7 +34,7 @@
 					</div>
 				</div>
 					<div style="" class="clock ">
-						<h2 id="time" style="text-shadow: 2px 2px #fff; padding-right:-100px;font-family:digital7;    font-size:17em;" ></h2>
+						<h2 id="time" style="text-shadow: 2px 2px #fff; padding-right:-100px;padding-top:17px;font-family:digital7;    font-size:17em;" ></h2>
 						
 
 						<!-- <p>am</p> -->
@@ -47,9 +47,9 @@
 						
 						
 						<li>
-							<h2 hidden id="iqo" class="time">Iqomah</h2>
-							<h3 hidden id="iqomah" class="time">13:00</h3>
-							<h3 hidden id="azantime" class="time">00:59</h3>
+							<h2 style="margin-bottom:17px;font-size:4em" hidden id="iqo" class="time">Iqomah</h2>
+							<h3 style="font-size:6em" hidden id="iqomah" class="time">13:00</h3>
+							<h3 style="font-size:6em" hidden id="azantime" class="time">00:59</h3>
 						</li>
 					</ul>
 				</div>
@@ -64,8 +64,8 @@
 			<ul>
 			<?php foreach($waktuAzan as $x => $y): ?>
 			<li>
-			<h2><?php echo $x; ?></h2>
-			<h3><?php echo $y; ?></h3>
+			<h2 style="font-size:2em"><?php echo $x; ?></h2>
+			<h3 style="padding-bottom:5px;color:rgb(7, 84, 7);font-family:digital7;;font-size:9em"><?php echo $y; ?></h3>
 			</li>
 			<?php endforeach; ?>
 			</ul>

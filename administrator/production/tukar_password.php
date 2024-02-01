@@ -39,8 +39,8 @@
 			                    $stmt2 = $DBH->prepare($query2);
 			                    $query2 = $stmt2->execute();
 			                    $setting = $stmt2->fetchAll();
-			                    $username= $setting[0][username];
-			                    $password= $setting[0][password];
+			                    $username= $setting[0]['username'];
+			                    $password= $setting[0]['password'];
 			  
 			  
 			  

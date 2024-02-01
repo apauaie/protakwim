@@ -17,19 +17,17 @@
 	date_default_timezone_set('Asia/Kuala_Lumpur');
 
 
-	if (!empty($_POST['penceramah'])) $penceramah=$_POST['penceramah']; else $penceramah='tiada';
-    if (!empty($_POST['tajuk'])) $tajuk=$_POST['tajuk']; else $tajuk='tajuk';
-    if (!empty($_POST['lokasi'])) $lokasi=$_POST['lokasi']; else $lokasi='tiada';
-  
-  if (!empty($_POST['tarikhceramah'])) $tarikhceramah=$_POST['tarikhceramah']; else $tarikhceramah=date('d-m-Y');
-    // $tarikhceramah=$_POST['tarikhceramah'];
+	$penceramah=$_POST['penceramah'];
+    $tajuk=$_POST['tajuk'];
+        $lokasi=$_POST['lokasi'];
+
+	$tarikhceramah=$_POST['tarikhceramah'];
     $tarikhceramah=date('Y-m-d',strtotime($tarikhceramah));
-      
-      if (!empty($_POST['masaceramah'])) $masaceramah=$_POST['masaceramah']; else $masaceramah='00:00:00';
-  
-    $modifiedby="admin";
-    $status="active";
-    $remarks="";
+    
+	$masaceramah=$_POST['masaceramah'];
+	$modifiedby="admin";
+	$status="active";
+	$remarks="";
 
 
 
@@ -324,7 +322,7 @@ window.location.href = 'senarai_ceramah_video.php';
     });
     
     $('#myTimepicker').datetimepicker({
-        format: 'hh:mm A'
+        format: 'hh:mm:ss'
     });
 
 

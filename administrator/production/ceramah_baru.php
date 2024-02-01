@@ -19,19 +19,17 @@
 	date_default_timezone_set('Asia/Kuala_Lumpur');
 
 
-	if (!empty($_POST['penceramah'])) $penceramah=$_POST['penceramah']; else $penceramah='tiada';
-    if (!empty($_POST['tajuk'])) $tajuk=$_POST['tajuk']; else $tajuk='tajuk';
-    if (!empty($_POST['lokasi'])) $lokasi=$_POST['lokasi']; else $lokasi='tiada';
-  
-  if (!empty($_POST['tarikhceramah'])) $tarikhceramah=$_POST['tarikhceramah']; else $tarikhceramah=date('d-m-Y');
-    // $tarikhceramah=$_POST['tarikhceramah'];
+	$penceramah=$_POST['penceramah'];
+    $tajuk=$_POST['tajuk'];
+        $lokasi=$_POST['lokasi'];
+
+	$tarikhceramah=$_POST['tarikhceramah'];
     $tarikhceramah=date('Y-m-d',strtotime($tarikhceramah));
-      
-      if (!empty($_POST['masaceramah'])) $masaceramah=$_POST['masaceramah']; else $masaceramah='00:00:00';
-  
-    $modifiedby="admin";
-    $status="active";
-    $remarks=""; 
+    
+	$masaceramah=$_POST['masaceramah'];
+	$modifiedby="admin";
+	$status="active";
+	$remarks="";
 
 
 
@@ -218,7 +216,7 @@ window.location.href = 'senarai_ceramah.php';
                         Masa Program
                     <div class="form-group">
                         <div class='input-group date' id='myTimepicker'>
-                            <input type='text' name=masaceramah class="form-control" />
+                            <input value='00:00:00' type='text' name=masaceramah class="form-control" />
                             <span class="input-group-addon">
                                <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -326,7 +324,7 @@ window.location.href = 'senarai_ceramah.php';
     });
     
     $('#myTimepicker').datetimepicker({
-        format: 'hh:mm A'
+        format: 'hh:mm:ss'
     });
 
 

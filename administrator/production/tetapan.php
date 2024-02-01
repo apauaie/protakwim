@@ -47,14 +47,14 @@
 			                    $stmt2 = $DBH->prepare($query2);
 			                    $query2 = $stmt2->execute();
 			                    $setting = $stmt2->fetchAll();
-			                    $zone= $setting[0][zone];
-			                    $pesanan= $setting[0][pesanan];
-			                    $namamasjid= $setting[0][namamasjid];
-			                    $iqomahperiod= $setting[0][iqomahperiod];
-			                    $timebeforeazan= $setting[0][timebeforeazan];
-			                    $scrollspeed= $setting[0][scrollspeed];
-			                    $solatperiod= $setting[0][solatperiod];
-			                    $timeperimages=$setting[0][time_per_image];
+			                    $zone= $setting[0]['zone'];
+			                    $pesanan= $setting[0]['pesanan'];
+			                    $namamasjid= $setting[0]['namamasjid'];
+			                    $iqomahperiod= $setting[0]['iqomahperiod'];
+			                    $timebeforeazan= $setting[0]['timebeforeazan'];
+			                    $scrollspeed= $setting[0]['scrollspeed'];
+			                    $solatperiod= $setting[0]['solatperiod'];
+			                    $timeperimages=$setting[0]['time_per_image'];
                           $timeprayerdisplays= $setting[0]['timeprayerdisplay'];
 			                    
 	$query ="SELECT  * FROM solat_zone where code='$zone' ";
@@ -71,7 +71,7 @@
 			                    $stmt2 = $DBH->prepare($query);
 			                    $query = $stmt2->execute();
 			                    $allnegeri = $stmt2->fetchAll();
-			                    $neg=$allnegeri[0][negeri];
+			                    $neg=$allnegeri[0]['negeri'];
 			                    
 	$query ="SELECT  DISTINCT kawasan,code FROM solat_zone where negeri='$negeri' ";
 	

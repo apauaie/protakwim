@@ -1,5 +1,11 @@
 <?php 
 
+// $php_version=phpversion();
+// if($php_version<7)
+// {
+//   $error=true;
+//   $php_error="PHP version is $php_version - too old!";
+// }
 
 // declare function
 function find_SQL_Version() {
@@ -51,7 +57,7 @@ if (!$db_error){
 	}
 	else
 	{
-	  $configfile="../config/config.php";
+	  $configfile="../config/configtest.php";
 	  $fp = fopen($configfile, 'wb');
 	  fwrite($fp,$connect_code);
 	  fclose($fp);

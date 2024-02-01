@@ -1,15 +1,12 @@
 <?php
 	require_once 'api.php';
-    // echo '<script src="js/myjs.js"></script>';
 
 
     // Display date in H:M:S
     date_default_timezone_set('Asia/Kuala_Lumpur');
 
-    //     $displayTime =  date("g:i:s");
      $displayTime =  date("g:i:s");
      $ampm =  date("a");
-    //$displayDate = date('D,d F Y');
     $checkDate = date("g:i:s a");
         $refresh=  date('g:i:s a',strtotime("00:00:00"));
         
